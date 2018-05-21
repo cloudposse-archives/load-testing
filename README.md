@@ -1,6 +1,6 @@
 # load-testing
 
-Load testing workflow, scripts and scenarios.
+CloudPosse load testing workflow, scripts and scenarios.
 
 
 ## Introduction
@@ -281,19 +281,19 @@ execution: local
 
     █ page_03 - /save_profile
 
-    █ page_04 - /addmedications
+    █ page_04 - /add_categoriess
 
-    █ page_05 - /doctorvisits
+    █ page_05 - /add_features
 
-    █ page_06 - /profile/add_doctor_visit_details
+    █ page_06 - /profile/add_details
 
-    █ page_07 - /profile/add_subsidy
+    █ page_07 - /profile/add_details2
 
     █ page_08 - /users
 
-    █ page_09 - /enroll
+    █ page_09 - /enrollment
 
-    █ page_10 - /enrollbasics
+    █ page_10 - /enrollment2
 
     █ page_11 - /enrollment/update_user_profile
 
@@ -352,19 +352,19 @@ WARN[0105] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.stag
 
     █ page_03 - /save_profile
 
-    █ page_04 - /addmedications
+    █ page_04 - /add_categoriess
 
-    █ page_05 - /doctorvisits
+    █ page_05 - /add_features
 
-    █ page_06 - /profile/add_doctor_visit_details
+    █ page_06 - /profile/add_details
 
-    █ page_07 - /profile/add_subsidy
+    █ page_07 - /profile/add_details2
 
     █ page_08 - /users
 
-    █ page_09 - /enroll
+    █ page_09 - /enrollment
 
-    █ page_10 - /enrollbasics
+    █ page_10 - /enrollment2
 
     █ page_11 - /enrollment/update_user_profile
 

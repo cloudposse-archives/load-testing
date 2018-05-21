@@ -1,3 +1,3 @@
 export let options = {
-    maxRedirects: 0
+    maxRedirects: 5
 };

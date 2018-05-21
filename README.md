@@ -1,6 +1,6 @@
 # load-testing
 
-CloudPosse load testing workflow, scripts and scenarios.
+CloudPosse load testing workflows, scripts and scenarios.
 
 
 ## Introduction
@@ -155,14 +155,7 @@ execution: local
 ###
 
 
-Let's estimate the max number of concurrent users for the website to be able to handle.
-
-We'll assume 200K signups in 1 month, which corresponds to 6.7k signups a day, 277 signups per hour, and approximately 5 signups per minute.
-
-To account for the traffic spikes, we'll multiply that number by 10, resulting in 50 signups per minute.
-
-And assuming that much more users will hit the home page (from organic search or ad campaigns, for example), let's multiply that number by 50, resulting in 2500 hits per minute (or about 50 requests per second).
-
+As an example, we assume that we want the website to handle 50 concurrent users.
 
 Let's hit the home page with 50 concurrent users, each one doing one itteration
 
@@ -256,8 +249,8 @@ k6 has a built-in HAR converter that will read HAR files and convert them to k6 
 
 See [session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support) for more details.
 
-We recorded and prepared a scenario to load test the complete user flow on the website, including signing-up, creating a user profile, providing all required information,
-and finally getting a list of available insurances (see [scenario_all](scenarios/scenario_all.js)).
+We recorded and prepared a sample scenario to load test the complete user flow on the website, including signing-up, creating a user profile, providing all required information,
+and finally getting a list of available options (see [scenario_all](scenarios/scenario_all.js)).
 
 Run it with a single user
 
@@ -281,13 +274,13 @@ execution: local
 
     █ page_03 - /save_profile
 
-    █ page_04 - /add_categoriess
+    █ page_04 - /add_categories
 
     █ page_05 - /add_features
 
-    █ page_06 - /profile/add_details
+    █ page_06 - /add_details
 
-    █ page_07 - /profile/add_details2
+    █ page_07 - /add_details2
 
     █ page_08 - /users
 
@@ -295,7 +288,7 @@ execution: local
 
     █ page_10 - /enrollment2
 
-    █ page_11 - /enrollment/update_user_profile
+    █ page_11 - /update_profile
 
     data_received..............: 14 MB  630 kB/s
     data_sent..................: 234 kB 11 kB/s
@@ -331,19 +324,6 @@ execution: local
     duration: -,   iterations: 50
          vus: 50, max: 50
 
-WARN[0091] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/subsidy: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0091] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0096] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0096] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/mybestplans: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0096] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0096] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0096] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0098] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/recommendations/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0100] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0100] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/mybestplans: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0103] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0104] Request Failed error="Post https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-WARN[0105] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.staging.joany.net/prescriptions/c9af54a9-71c2-4110-b39e-2da8fb4b7c11: net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
     done [==========================================================] 50 / 50
 
     █ page_01 - home
@@ -352,13 +332,13 @@ WARN[0105] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.stag
 
     █ page_03 - /save_profile
 
-    █ page_04 - /add_categoriess
+    █ page_04 - /add_categories
 
     █ page_05 - /add_features
 
-    █ page_06 - /profile/add_details
+    █ page_06 - /add_details
 
-    █ page_07 - /profile/add_details2
+    █ page_07 - /add_details2
 
     █ page_08 - /users
 
@@ -366,7 +346,7 @@ WARN[0105] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.stag
 
     █ page_10 - /enrollment2
 
-    █ page_11 - /enrollment/update_user_profile
+    █ page_11 - /update_profile
 
     data_received..............: 679 MB 6.6 MB/s
     data_sent..................: 12 MB  115 kB/s
@@ -397,14 +377,4 @@ WARN[0105] Request Failed error="Get https://pr-1573.impacthealth.us-west-2.stag
 
 1. From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources are enough to sustain 50 concurrent users going through the entire flow
 
-2. We should place all files in the `/assets` folder and its subfolders behind a CDN (e.g. AWS CloudFront) to not overload the Kubernetes pods with serving the static assets (which rarely change)
-
-3. Some requests to `/subsidy`, `/prescriptions`, `/recommendations` and `/mybestplans` timed out. Since the CPU amd memory utilizations did not exceed the provisioned values,
-the website itself needs to be reviewed and optimized (e.g. review and fine-tune Ruby on Rails threading model, thread pool executors, the Global Interpreter Lock, and code execution paths)
-
-* http://guides.rubyonrails.org/threading_and_code_execution.html
-* https://www.toptal.com/ruby/ruby-concurrency-and-parallelism-a-practical-primer
-* https://stackoverflow.com/questions/12766456/in-what-way-is-ruby-on-rails-not-multithreaded
-* https://rossta.net/blog/a-ruby-antihero-thread-pool.html
-* https://www.sitepoint.com/threads-ruby/
-
+2. We should place all static assets behind a CDN (e.g. AWS CloudFront) to not overload the Kubernetes pods with serving the static assets (which rarely change)

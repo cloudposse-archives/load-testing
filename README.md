@@ -1,6 +1,6 @@
 # load-testing
 
-A collection of tools, workflows, scripts and scenarios that Cloud Posse uses for load and performance testing.
+A collection of tools, workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
 
 __NOTE:__ All load testing scripts and scenarios here are just examples and are provided for references.
 We recommend updating them to reflect your environment.
@@ -234,6 +234,8 @@ execution: local
 ```
 
 
+Check the pods CPU and memory consumption in the Kubernetes cluster's `Grafana` dashboard
+
 ###
 
 ![Load Scenario 01 Grafana Portal Dashboard](images/load-testing-portal-grafana-scenario-01.png)
@@ -241,9 +243,7 @@ execution: local
 ###
 
 
-The numbers look OK.
-
-With the current CPU and memory configuration, the site can handle 50 requests per second to the home page.
+We can conclude that with the current CPU and memory configuration for Kubernetes pods, the site can handle 50 requests per second to the home page.
 
 
 ## Perform load testing, analyze the results, and suggest improvements and tuning procedures for the website under test
@@ -311,7 +311,7 @@ execution: local
 
 ```
 
-The numbers look good, and the entire process took 21 seconds.
+The entire process took 21 seconds.
 
 Run it with 50 concurrent users
 
@@ -368,6 +368,8 @@ execution: local
     vus_max....................: 50     min=50 max=50
 
 ```
+
+Check the pods CPU and memory consumption in the Kubernetes cluster `Grafana` dashboard
 
 ###
 

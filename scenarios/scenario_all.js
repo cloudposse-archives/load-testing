@@ -204,7 +204,7 @@ export default function () {
             "url": config.baseUrl + "/add_details2",
             "body": {
                 "utf8": "✓",
-                "amount": "4"
+                "count": "4"
             },
             "params": {
                 "headers": {
@@ -233,7 +233,7 @@ export default function () {
             "url": config.baseUrl + "/users",
             "body": {
                 "utf8": "✓",
-                "email": "test4@test.org"
+                "email": "test@test.org"
             },
             "params": {
                 "headers": {
@@ -312,8 +312,7 @@ export default function () {
             "body": {
                 "utf8": "✓",
                 "first_name": "Test",
-                "last_name": "Test",
-                "commit": "1"
+                "last_name": "Test"
             },
             "params": {
                 "headers": {

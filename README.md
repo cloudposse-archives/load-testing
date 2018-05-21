@@ -1,6 +1,9 @@
 # load-testing
 
-CloudPosse load testing workflows, scripts and scenarios.
+A collection of tools, workflows, scripts and scenarios that Cloud Posse uses for load and performance testing.
+
+__NOTE:__ All load testing scripts and scenarios here are just examples and are provided for references.
+We recommend updating them to reflect your environment.
 
 
 ## Introduction
@@ -157,7 +160,7 @@ execution: local
 
 As an example, we assume that we want the website to handle 50 concurrent users.
 
-Let's hit the home page with 50 concurrent users, each one doing one itteration
+Let's hit the home page with 50 concurrent users, each doing one itteration
 
 ```sh
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 -i 50 /scenarios/scenario_01.js
@@ -193,7 +196,7 @@ execution: local
 
 ```
 
-We were loading the website with `41.106944` requests per second.
+We just loaded the website with `41.106944` requests per second.
 Let's increase the number of iterations to hit the home page with approximately 50 requests per second.
 
 ```sh
@@ -250,7 +253,7 @@ k6 has a built-in HAR converter that will read HAR files and convert them to k6 
 See [session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support) for more details.
 
 We recorded and prepared a sample scenario to load test the complete user flow on the website, including signing-up, creating a user profile, providing all required information,
-and finally getting a list of available options (see [scenario_all](scenarios/scenario_all.js)).
+and finally getting a list of available options for the user (see [scenario_all](scenarios/scenario_all.js)).
 
 Run it with a single user
 
@@ -373,8 +376,8 @@ execution: local
 ###
 
 
-## Recommendations
+## Example recommendations
 
-1. From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources are enough to sustain 50 concurrent users going through the entire flow
+1. From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources on the Kubernetes cluster are enough to sustain 50 concurrent users going through the entire flow
 
-2. We should place all static assets behind a CDN (e.g. AWS CloudFront) to not overload the Kubernetes pods with serving the static assets (which rarely change)
+2. We recommend placing all static assets behind a CDN (e.g. AWS CloudFront) to not overload the Kubernetes pods with serving the static assets (which rarely change)

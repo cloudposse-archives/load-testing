@@ -1,25 +1,15 @@
 import {check, group, sleep} from 'k6';
 import http from 'k6/http';
-import {config} from "./config.js";
+import {commonHeaders, config, mergeHeaders} from "./config.js";
 
 export default function () {
-
     group("page_01 - home", function () {
         let req, res;
         req = [{
             "method": "get",
             "url": config.baseUrl + "/",
             "params": {
-                "headers": {
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "upgrade-insecure-requests": "1",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                "headers": commonHeaders
             }
         }];
         res = http.batch(req);
@@ -28,17 +18,9 @@ export default function () {
             "method": "get",
             "url": config.baseUrl + "/zip/33305",
             "params": {
-                "headers": {
-                    "pragma": "no-cache",
-                    "dnt": "1",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9",
-                    "user-agent": config.userAgent,
-                    "accept": "*/*",
-                    "cache-control": "no-cache",
-                    "x-requested-with": "XMLHttpRequest",
-                    "referer": config.baseUrl + "/"
-                }
+                "headers": mergeHeaders({
+                    "referer": config.baseUrl
+                })
             }
         }];
         res = http.batch(req);
@@ -54,36 +36,19 @@ export default function () {
                 "zip": "33305"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "165",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
                     "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "referer": config.baseUrl
+                })
             }
         }, {
             "method": "get",
             "url": config.baseUrl + "/info",
             "params": {
-                "headers": {
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "upgrade-insecure-requests": "1",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                "headers": mergeHeaders({
+                    "referer": config.baseUrl
+                })
             }
         }];
         res = http.batch(req);
@@ -100,20 +65,11 @@ export default function () {
                 "spouse_age": "35"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "259",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
                     "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/info",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "referer": config.baseUrl + "/info"
+                })
             }
         }];
         res = http.batch(req);
@@ -129,19 +85,10 @@ export default function () {
                 "categories": "1,2,3"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "126",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
-                    "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "content-type": "application/x-www-form-urlencoded"
+                })
             }
         }];
         res = http.batch(req);
@@ -153,17 +100,9 @@ export default function () {
             "method": "get",
             "url": config.baseUrl + "/add_features",
             "params": {
-                "headers": {
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "upgrade-insecure-requests": "1",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/add_categories",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                "headers": mergeHeaders({
+                    "referer": config.baseUrl + "/add_categories"
+                })
             }
         }];
         res = http.batch(req);
@@ -179,19 +118,10 @@ export default function () {
                 "details_count": "5"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "200",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
-                    "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "content-type": "application/x-www-form-urlencoded"
+                })
             }
         }];
         res = http.batch(req);
@@ -207,20 +137,11 @@ export default function () {
                 "count": "4"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "103",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
                     "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/add_details",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "referer": config.baseUrl + "/add_details"
+                })
             }
         }];
         res = http.batch(req);
@@ -236,20 +157,11 @@ export default function () {
                 "email": "test@test.org"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "143",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
                     "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/add_details2",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "referer": config.baseUrl + "/add_details2"
+                })
             }
         }];
         res = http.batch(req);
@@ -264,19 +176,10 @@ export default function () {
                 "id": "123456789"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "67",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
-                    "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "content-type": "application/x-www-form-urlencoded"
+                })
             }
         }];
         res = http.batch(req);
@@ -288,17 +191,9 @@ export default function () {
             "method": "get",
             "url": config.baseUrl + "/enrollment2",
             "params": {
-                "headers": {
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "upgrade-insecure-requests": "1",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/enrollment",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                "headers": mergeHeaders({
+                    "referer": config.baseUrl + "/enrollment"
+                })
             }
         }];
         res = http.batch(req);
@@ -315,20 +210,11 @@ export default function () {
                 "last_name": "Test"
             },
             "params": {
-                "headers": {
+                "headers": mergeHeaders({
                     "content-length": "212",
-                    "pragma": "no-cache",
-                    "cache-control": "no-cache",
-                    "origin": config.baseUrl + "",
-                    "upgrade-insecure-requests": "1",
                     "content-type": "application/x-www-form-urlencoded",
-                    "user-agent": config.userAgent,
-                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                    "dnt": "1",
-                    "referer": config.baseUrl + "/enrollment2",
-                    "accept-encoding": "gzip, deflate, br",
-                    "accept-language": "en-US,en;q=0.9"
-                }
+                    "referer": config.baseUrl + "/enrollment2"
+                })
             }
         }];
         res = http.batch(req);

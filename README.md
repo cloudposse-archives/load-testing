@@ -2,7 +2,7 @@
 
 A collection of workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
 
-__NOTE:__ All load testing scripts and scenarios here are just examples and are provided for references.
+__NOTE:__ All load testing scripts and scenarios in [scenarios](scenarios) are just examples and are provided here for reference.
 We recommend updating them to reflect your environment.
 
 
@@ -133,7 +133,7 @@ Open the `Grafana` dashboard at http://localhost:3000 to see the load test resul
 
 We assume that we want the website to handle 50 concurrent users.
 
-Let's hit the home page with 50 concurrent users, each doing one itteration
+Let's hit the home page with 50 concurrent users, each doing one iteration
 
 ```sh
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 -i 50 /scenarios/scenario_01.js
@@ -352,7 +352,9 @@ Check the Kubernetes pods CPU and memory consumption in the `Grafana` dashboard
 ###
 
 
-## Example recommendations
+## Recommendations
+
+Here are some conclusions and recommendations that we usually give after running load tests:
 
 1. From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources on the Kubernetes cluster are enough to sustain 50 concurrent users going through the entire flow
 
@@ -437,10 +439,14 @@ or [hire us][hire] to help build your next cloud platform.
 
 ## Contributors
 
-| [![Erik Osterman][erik_img]][erik_web]<br/>[Erik Osterman][erik_web] | [![Andriy Knysh][andriy_img]][andriy_web]<br/>[Andriy Knysh][andriy_web] |
-|-------------------------------------------------------|------------------------------------------------------------------|
+| [![Erik Osterman][erik_img]][erik_web]<br/>[Erik Osterman][erik_web] | [![Andriy Knysh][andriy_img]][andriy_web]<br/>[Andriy Knysh][andriy_web] |[![Igor Rodionov][igor_img]][igor_web]<br/>[Igor Rodionov][igor_img]|[![Sarkis Varozian][sarkis_img]][sarkis_web]<br/>[Sarkis Varozian][sarkis_web] |
+|-------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|
 
-  [erik_img]: http://s.gravatar.com/avatar/88c480d4f73b813904e00a5695a454cb?s=144
-  [erik_web]: https://github.com/osterman/
-  [andriy_img]: https://avatars0.githubusercontent.com/u/7356997?v=4&u=ed9ce1c9151d552d985bdf5546772e14ef7ab617&s=144
-  [andriy_web]: https://github.com/aknysh/
+[erik_img]: http://s.gravatar.com/avatar/88c480d4f73b813904e00a5695a454cb?s=144
+[erik_web]: https://github.com/osterman/
+[andriy_img]: https://avatars0.githubusercontent.com/u/7356997?v=4&u=ed9ce1c9151d552d985bdf5546772e14ef7ab617&s=144
+[andriy_web]: https://github.com/aknysh/
+[igor_img]: http://s.gravatar.com/avatar/bc70834d32ed4517568a1feb0b9be7e2?s=144
+[igor_web]: https://github.com/goruha/
+[sarkis_img]: https://avatars3.githubusercontent.com/u/42673?s=144&v=4
+[sarkis_web]: https://github.com/sarkis/

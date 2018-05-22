@@ -1,6 +1,6 @@
 # load-testing
 
-A collection of tools, workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
+A collection of workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
 
 __NOTE:__ All load testing scripts and scenarios here are just examples and are provided for references.
 We recommend updating them to reflect your environment.
@@ -11,7 +11,7 @@ We recommend updating them to reflect your environment.
 For load and performance testing, the workflow consists of three main steps:
 
 1. Select and configure the tools to perform load testing
-2. Implement load testing scenarios and scripts to run the scenarios
+2. Implement load testing scenarios and scripts
 3. Perform load testing, analyze the results, and suggest improvements and tuning procedures for the application/website under test
 
 
@@ -63,35 +63,6 @@ Then select `myinfluxdb` from the `Select a InfluxDB data source` dropdown and c
 ###
 
 ![Import Grafana Dashboard](images/grafana-01.png)
-
-###
-
-
-### Run a sample scenario to test the installation
-
-__NOTE:__ All scripts in [samples](scenarios/samples) are taken from the k6's excelent collections of examples (https://github.com/loadimpact/k6/tree/master/samples)
-and are included here for reference and as a starting point to create our own load testing scenarios.
-
-Execute this command to run [http_get](scenarios/samples/http_get.js) scenario with 50 concurrent sessions (virtual users) for 30 seconds
-
-```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 --duration 30s /scenarios/samples/http_get.js
-```
-
-__NOTE:__ `--no-usage-report` option is used to prevent sending anonymous stats to the k6's developers (see [usage-reports](https://docs.k6.io/docs/usage-reports) for more details).
-
-
-###
-
-![Load Testing Sample 1 CLI](images/load-testing-sample-01.png)
-
-###
-
-Open the `Grafana` dashboard at http://localhost:3000 to see the load test results
-
-###
-
-![Load Testing Sample 1 Grafana Dashboard](images/load-testing-grafana-sample-01.png)
 
 ###
 
@@ -151,6 +122,8 @@ execution: local
 
 ```
 
+Open the `Grafana` dashboard at http://localhost:3000 to see the load test results
+
 ###
 
 ![Load Scenario 01 Grafana Dashboard](images/load-testing-grafana-scenario-01.png)
@@ -158,7 +131,7 @@ execution: local
 ###
 
 
-As an example, we assume that we want the website to handle 50 concurrent users.
+We assume that we want the website to handle 50 concurrent users.
 
 Let's hit the home page with 50 concurrent users, each doing one itteration
 
@@ -235,7 +208,7 @@ execution: local
 ```
 
 
-Check the pods CPU and memory consumption in the Kubernetes cluster's `Grafana` dashboard
+Check the Kubernetes pods CPU and memory consumption in the `Grafana` dashboard
 
 ###
 
@@ -244,7 +217,7 @@ Check the pods CPU and memory consumption in the Kubernetes cluster's `Grafana` 
 ###
 
 
-We can conclude that with the current CPU and memory configuration for Kubernetes pods, the site can handle 50 requests per second to the home page.
+We can conclude that with the current CPU and memory configurations for Kubernetes pods, the site can handle 50 requests per second to the home page.
 
 
 ## Perform load testing, analyze the results, and suggest improvements and tuning procedures for the website under test
@@ -370,7 +343,7 @@ execution: local
 
 ```
 
-Check the pods CPU and memory consumption in the Kubernetes cluster `Grafana` dashboard
+Check the Kubernetes pods CPU and memory consumption in the `Grafana` dashboard
 
 ###
 

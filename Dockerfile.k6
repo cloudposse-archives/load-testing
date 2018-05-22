@@ -1,4 +1,4 @@
-FROM loadimpact/k6:latest
+FROM loadimpact/k6:0.20.0
 
 USER root
 

@@ -1,0 +1,12 @@
+.git
+.gitignore
+.editorconfig
+
+# Module directory
+.terraform/
+.idea
+*.iml
+
+# Build Harness
+.build-harness
+build-harness/

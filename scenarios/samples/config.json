@@ -1,0 +1,8 @@
+{
+  "vus": 100,
+  "collectors": {
+    "influxdb": {
+      "tagsAsFields": ["vu","iter", "url", "name"]
+    }
+  }
+}

@@ -4,5 +4,5 @@ import {config} from "./config.js";
 
 export default function () {
     let res = http.get(config.baseUrl);
-    check(res, {"status is 200": (r) => r.status === 200});
+    check(res, {"Status is 200": (r) => r.status === 200});
 }

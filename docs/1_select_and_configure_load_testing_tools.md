@@ -43,4 +43,4 @@ Then select `myinfluxdb` from the `Select a InfluxDB data source` dropdown and c
 
 ###
 
-![Import Grafana Dashboard](images/grafana-01.png)
+![Import Grafana Dashboard](../images/grafana-01.png)

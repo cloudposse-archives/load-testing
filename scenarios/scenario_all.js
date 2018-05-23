@@ -152,12 +152,13 @@ export default function () {
     });
     group("page_08 - /users", function () {
         let req, res;
+        const email = `user+${__VU}@test123.org`;
         req = [{
             "method": "post",
             "url": config.baseUrl + "/users",
             "body": {
                 "utf8": "✓",
-                "email": "test@test.org"
+                "email": email
             },
             "params": {
                 "headers": mergeHeaders({

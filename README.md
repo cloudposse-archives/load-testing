@@ -216,7 +216,7 @@ execution: local
 ```
 
 
-Check the Kubernetes pods CPU and memory consumption in the `Grafana` dashboard
+Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana` dashboard
 
 ###
 
@@ -351,7 +351,7 @@ execution: local
 
 ```
 
-Check the Kubernetes pods CPU and memory consumption in the `Grafana` dashboard
+Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana` dashboard
 
 ###
 

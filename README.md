@@ -78,9 +78,11 @@ This will allow us to see the best performing numbers, against which we'd compar
 ```js
 import http from "k6/http";
 import {check} from "k6";
-import config from "./config.js";
+import {options} from "./options.js";
+import {config} from "./config.js";
 
 export default function () {
+    console.log("Options: " + JSON.stringify(options) + "\n");
     let res = http.get(config.baseUrl);
     check(res, {"Status is 200": (r) => r.status === 200});
 }
@@ -89,7 +91,7 @@ export default function () {
 Run the test
 
 ```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 1 /scenarios/scenario_01.js
+docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 /scenarios/scenario_01.js
 ```
 
 ```
@@ -136,7 +138,7 @@ We assume that we want the website to handle 50 concurrent users.
 Let's hit the home page with 50 concurrent users, each doing one iteration
 
 ```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 -i 50 /scenarios/scenario_01.js
+docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_01.js
 ```
 
 ```
@@ -174,7 +176,7 @@ We just loaded the website with `41.106944` requests per second.
 Let's increase the number of iterations to hit the home page with approximately 50 requests per second.
 
 ```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 -i 80 /scenarios/scenario_01.js
+docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 80 /scenarios/scenario_01.js
 ```
 
 ```
@@ -232,7 +234,7 @@ and finally getting a list of available options for the user (see [scenario_all]
 Run it with a single user
 
 ```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 1 -i 1 /scenarios/scenario_all.js
+docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 -i 1 /scenarios/scenario_all.js
 ```
 
 ```
@@ -290,7 +292,7 @@ The entire process took 21 seconds.
 Now run it with 50 concurrent users
 
 ```sh
-docker-compose run -v $PWD/scenarios:/scenarios k6 run --no-usage-report --vus 50 -i 50 /scenarios/scenario_all.js
+docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_all.js
 ```
 
 ```

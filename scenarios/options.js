@@ -1,3 +1,4 @@
 export let options = {
-    maxRedirects: 5
+    maxRedirects: 5,
+    noUsageReport: true
 };

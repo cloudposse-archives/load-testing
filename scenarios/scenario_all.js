@@ -1,8 +1,11 @@
 import {check, group, sleep} from 'k6';
 import http from 'k6/http';
+import {options} from "./options.js";
 import {commonHeaders, config, mergeHeaders} from "./config.js";
 
 export default function () {
+    console.log("Options: " + JSON.stringify(options) + "\n");
+
     group("page_01 - home", function () {
         let req, res;
         req = [{

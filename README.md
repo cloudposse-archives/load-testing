@@ -79,7 +79,7 @@ This will allow us to see the best performing numbers, against which we'd compar
 ```js
 import http from "k6/http";
 import {check} from "k6";
-import {config} from "./config.js";
+import {config} from "./utils.js";
 
 export function setup() {
     console.log("Options: " + JSON.stringify(options) + "\n");

@@ -1,5 +1,5 @@
 import http from "k6/http";
-import {checkResponses, config, k6_options} from "./config.js";
+import {checkResponses, config, k6_options} from "./utils.js";
 
 export let options = k6_options;
 

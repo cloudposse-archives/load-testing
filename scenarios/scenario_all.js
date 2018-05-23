@@ -1,6 +1,6 @@
 import {check, group, sleep} from 'k6';
 import http from 'k6/http';
-import {checkResponses, commonHeaders, config, k6_options, mergeHeaders} from "./config.js";
+import {checkResponses, commonHeaders, config, k6_options, mergeHeaders} from "./utils.js";
 
 export let options = k6_options;
 

@@ -20,7 +20,7 @@ Read more about k6's features and metrics:
 
 ## Installation
 
-The [docker-compose](docker-compose.yml) file builds three Docker images:
+The [docker-compose](../docker-compose.yml) file builds three Docker images:
 
 * InfluxDB
 * Grafana

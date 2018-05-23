@@ -3,7 +3,7 @@ k6 has a built-in HAR converter that will read HAR files and convert them to k6 
 See [session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support) for more details.
 
 We recorded and prepared a sample scenario to test the complete user flow on the website, including signing up, creating a user profile, providing all required information,
-and finally getting a list of available options for the user (see [scenario_all](scenarios/scenario_all.js)).
+and finally getting a list of available options for the user (see [scenario_all](../scenarios/scenario_all.js)).
 
 Run it with a single user
 
@@ -123,7 +123,7 @@ Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana`
 
 ###
 
-![Load Scenario 02 Grafana Portal Dashboard](images/load-testing-portal-grafana-scenario-02.png)
+![Load Scenario 02 Grafana Portal Dashboard](../images/load-testing-portal-grafana-scenario-02.png)
 
 ###
 

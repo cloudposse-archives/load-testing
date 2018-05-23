@@ -2,7 +2,7 @@ To establish a baseline, first we'll load test the website's home page with one 
 
 This will allow us to see the best performing numbers, against which we'd compare more advanced scenarious involving more pages and more concurrent users.
 
-(see [scenario_01](scenarios/scenario_01.js))
+(see [scenario_01](../scenarios/scenario_01.js))
 
 ```js
 import http from "k6/http";
@@ -62,7 +62,7 @@ Open the `Grafana` dashboard at http://localhost:3000 to see the load test resul
 
 ###
 
-![Load Scenario 01 Grafana Dashboard](images/load-testing-grafana-scenario-01.png)
+![Load Scenario 01 Grafana Dashboard](../images/load-testing-grafana-scenario-01.png)
 
 ###
 
@@ -148,7 +148,7 @@ Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana`
 
 ###
 
-![Load Scenario 01 Grafana Portal Dashboard](images/load-testing-portal-grafana-scenario-01.png)
+![Load Scenario 01 Grafana Portal Dashboard](../images/load-testing-portal-grafana-scenario-01.png)
 
 ###
 

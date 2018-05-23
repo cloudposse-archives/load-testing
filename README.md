@@ -79,7 +79,6 @@ This will allow us to see the best performing numbers, against which we'd compar
 ```js
 import http from "k6/http";
 import {check} from "k6";
-import {options} from "./options.js";
 import {config} from "./config.js";
 
 export function setup() {
@@ -91,7 +90,7 @@ export function teardown(data) {
 
 export default function (data) {
     let res = http.get(config.baseUrl);
-    check(res, {"Status is 200": (r) => r.status === 200});
+    check(res, {"status is 200": (r) => r.status === 200});
 }
 ```
 

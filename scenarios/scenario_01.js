@@ -1,10 +1,10 @@
 import http from "k6/http";
-import {check} from "k6";
-import {options} from "./options.js";
-import {config} from "./config.js";
+import {checkResponses, config, k6_options} from "./config.js";
+
+export let options = k6_options;
 
 export function setup() {
-    console.log("Options: " + JSON.stringify(options) + "\n");
+    console.log("k6 options: " + JSON.stringify(options) + "\n");
 }
 
 export function teardown(data) {
@@ -12,5 +12,5 @@ export function teardown(data) {
 
 export default function (data) {
     let res = http.get(config.baseUrl);
-    check(res, {"Status is 200": (r) => r.status === 200});
+    checkResponses(res);
 }

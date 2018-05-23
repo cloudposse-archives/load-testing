@@ -1,10 +1,11 @@
 import {check, group, sleep} from 'k6';
 import http from 'k6/http';
-import {options} from "./options.js";
-import {commonHeaders, config, mergeHeaders} from "./config.js";
+import {checkResponses, commonHeaders, config, k6_options, mergeHeaders} from "./config.js";
+
+export let options = k6_options;
 
 export function setup() {
-    console.log("Options: " + JSON.stringify(options) + "\n");
+    console.log("k6 options: " + JSON.stringify(options) + "\n");
 }
 
 export function teardown(data) {
@@ -21,6 +22,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(2.00);
         req = [{
             "method": "get",
@@ -32,6 +34,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.02);
     });
     group("page_02 - /profile", function () {
@@ -60,6 +63,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.65);
     });
     group("page_03 - /save_profile", function () {
@@ -81,6 +85,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.77);
     });
     group("page_04 - /add_categories", function () {
@@ -100,6 +105,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.80);
     });
     group("page_05 - /add_features", function () {
@@ -114,6 +120,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.74);
     });
     group("page_06 - /add_details", function () {
@@ -133,6 +140,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.73);
     });
     group("page_07 - /add_details2", function () {
@@ -153,6 +161,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.68);
     });
     group("page_08 - /users", function () {
@@ -174,6 +183,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.80);
     });
     group("page_09 - /enrollment", function () {
@@ -192,6 +202,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.79);
     });
     group("page_10 - /enrollment2", function () {
@@ -206,6 +217,7 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
         sleep(0.65);
     });
     group("page_11 - /update_profile", function () {
@@ -227,5 +239,6 @@ export default function (data) {
             }
         }];
         res = http.batch(req);
+        checkResponses(res);
     });
 }

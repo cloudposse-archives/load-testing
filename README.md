@@ -376,6 +376,7 @@ Here are some optimization steps that we usually perform after running load test
 * Scale Nginx Ingress CPU and Memory
 * Tune Nginx paramaters (e.g timeouts, queues)
 * Optimize application/web server parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
+* Optimize database queries and indexes
 
 
 ## Credits

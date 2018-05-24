@@ -1,9 +1,11 @@
+![Cloud Posse](https://cloudposse.com/logo-300x69.png)
+
 # load-testing
 
-A collection of workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
+A collection of best practices, workflows, scripts and scenarios that Cloud Posse uses for load and performance testing of websites and applications (in particular those deployed on Kubernetes clusters).
 
-__NOTE:__ All load testing scripts and scenarios in [scenarios](scenarios) are just examples and are provided here for reference.
-We recommend updating them to reflect your environment.
+__NOTE:__ All load testing scenarios in [scenarios](scenarios) are just examples and are provided here for reference.
+Consider updating them to reflect your environment.
 
 
 ## Introduction
@@ -82,7 +84,6 @@ import {check} from "k6";
 import {config} from "./utils.js";
 
 export function setup() {
-    console.log("Options: " + JSON.stringify(options) + "\n");
 }
 
 export function teardown(data) {
@@ -234,7 +235,7 @@ k6 has a built-in HAR converter that will read HAR files and convert them to k6 
 
 See [session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support) for more details.
 
-We recorded and prepared a sample scenario to test the complete user flow on the website, including signing up, creating a user profile, providing all required information,
+We recorded and prepared a sample scenario to test the complete user flow on a website, including signing up, creating a user profile, providing all required information,
 and finally getting a list of available options for the user (see [scenario_all](scenarios/scenario_all.js)).
 
 Run it with a single user
@@ -360,7 +361,7 @@ Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana`
 ###
 
 
-## Recommendations
+### Recommendations
 
 Here are some conclusions and recommendations that we usually give after running load tests:
 

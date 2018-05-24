@@ -12,10 +12,10 @@ Consider updating them to reflect your environment.
 
 For load and performance testing, the workflow consists of these main steps:
 
-1. Select and configure the tools to perform load testing
+1. Select and configure load testing tools
 2. Implement load testing scenarios and scripts
-3. Perform load testing, analyze the results, and suggest improvements and tuning procedures for the application/website under test
-4. Tune and optimize the infrastructure and application/website
+3. Perform load testing and analyze the results
+4. Suggest improvements and tuning procedures for the infrastructure and application under test
 
 
 ## Select and configure load testing tools
@@ -229,7 +229,7 @@ Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana`
 We can conclude that with the current CPU and memory configurations for Kubernetes pods, the site can handle 50 requests per second to the home page.
 
 
-## Perform load testing, analyze the results, and suggest improvements and tuning procedures for the website under test
+## Perform load testing and analyze the results
 
 k6 has a built-in HAR converter that will read HAR files and convert them to k6 scripts that can then be executed.
 
@@ -360,14 +360,22 @@ Check the Kubernetes pods CPU and memory consumption in the Kubernetes `Grafana`
 
 ###
 
+From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources on the Kubernetes cluster are enough to sustain 50 concurrent users going through the entire flow.
 
-### Recommendations
 
-Here are some conclusions and recommendations that we usually give after running load tests:
+## Suggest improvements and tuning procedures for the infrastructure and application under test
 
-1. From the load test stats and graphs above, we can conclude that the provisioned CPU and memory resources on the Kubernetes cluster are enough to sustain 50 concurrent users going through the entire flow
+Here are some optimization steps that we usually perform after running load tests:
 
-2. We recommend placing all static assets behind a CDN (e.g. AWS CloudFront) to not overload the Kubernetes pods with serving the static assets
+* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets (in may cases, this is one of the main reasons of poor website performance)
+* Scale Kubernetes cluster (horizontally by adding nodes or vertically by using different types of EC2 instances)
+* Scale Kubernetes pods (horizontally by increasing the replica count)
+* Scale pods Memory
+* Scale pods CPU
+* Scale Nginx Ingress pods (horizontally by increasing the replica count)
+* Scale Nginx Ingress CPU and Memory
+* Tune Nginx paramaters (e.g timeouts, queues)
+* Optimize application server parameters (e.g. threads and processes, thread pools, timeouts, memory limits)
 
 
 ## Credits

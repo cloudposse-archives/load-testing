@@ -12,10 +12,10 @@ Consider updating them to reflect your environment.
 
 For load and performance testing, the workflow consists of these main steps:
 
-1. Select and configure load testing tools
-2. Implement load testing scenarios and scripts
-3. Perform load testing and analyze the results
-4. Suggest improvements and tuning procedures for the infrastructure and application under test
+1. [Select and configure load testing tools](#select-and-configure-load-testing-tools)
+2. [Implement load testing scenarios and scripts](#implement-load-testing-scenarios-and-scripts)
+3. [Perform load testing and analyze the results](#perform-load-testing-and-analyze-the-results)
+4. [Suggest improvements and tuning procedures for the infrastructure and application under test](suggest-improvements-and-tuning-procedures-for-the-infrastructure-and-application-under-test)
 
 
 ## Select and configure load testing tools
@@ -375,7 +375,7 @@ Here are some optimization steps that we usually perform after running load test
 * Scale Nginx Ingress pods (horizontally by increasing the replica count)
 * Scale Nginx Ingress CPU and Memory
 * Tune Nginx paramaters (e.g timeouts, queues)
-* Optimize application server parameters (e.g. threads and processes, thread pools, timeouts, memory limits)
+* Optimize application/web server parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
 
 
 ## Credits

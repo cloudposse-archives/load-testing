@@ -26,9 +26,9 @@ We use [k6](https://github.com/loadimpact/k6) from [Load Impact](https://loadimp
 * Allows to easily create load test scenarios based on virtual users and simulated traffic configurations
 * It's implemented in [Go](https://golang.org/), which has exelent support for concurrency - tests will not consume too much CPU and memory on the test machine even with a large number of consurrent sessions
 * Scenario scripting in `JavaScript` ES2015/ES6 - with support for local and remote modules
-* Everything as code: test logic and configuration options are both in JS for version control friendliness
+* Testing as code: test logic and configuration options are both in JS for version control friendliness
 * Can be run from the command line with command & control through CLI
-* Has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts that can then be executed ([session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support))
+* Has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts that can then be executed (see [session recording](https://docs.k6.io/docs/session-recording-har-support))
 * Can be easily integrated into CI/CD processes
 * Provides a comprehensive set of built-in [metrics](https://docs.k6.io/docs/result-metrics)
 * Can stream metrics into [InfluxDB](https://www.influxdata.com/) for storage and visualization with [Grafana](https://grafana.com/) ([influxdb-grafana](https://docs.k6.io/docs/influxdb-grafana))
@@ -233,10 +233,9 @@ We can conclude that with the current CPU and memory configurations for Kubernet
 
 k6 has a built-in HAR converter that will read HAR files and convert them to k6 scripts that can then be executed.
 
-See [session-recording-har-support](https://docs.k6.io/docs/session-recording-har-support) for more details.
+See [session recording](https://docs.k6.io/docs/session-recording-har-support) for more details.
 
-We recorded and prepared a sample scenario to test the complete user flow on a website, including signing up, creating a user profile, providing all required information,
-and finally getting a list of available options for the user (see [scenario_all](scenarios/scenario_all.js)).
+We recorded and prepared a sample scenario to test the complete user flow on a website, including signing up, creating a user profile, providing all required information, and finally getting a list of available options for the user (see [scenario_all](scenarios/scenario_all.js)).
 
 Run it with a single user
 

@@ -22,21 +22,21 @@ For load and performance testing, the workflow consists of these main steps:
 
 We use [k6](https://github.com/loadimpact/k6) from [Load Impact](https://loadimpact.com/) for the following reasons:
 
-* Open-source, well documented (see [docs](https://docs.k6.io/docs)) and with simple command line usage
-* Allows to easily create load test scenarios based on virtual users and simulated traffic configurations
-* It's implemented in [Go](https://golang.org/), which has exelent support for concurrency - tests will not consume too much CPU and memory on the test machine even with a large number of consurrent sessions
-* Scenario scripting in `JavaScript` ES2015/ES6 - with support for local and remote modules
-* Testing as code: test logic and configuration options are both in JS for version control friendliness
-* Can be run from the command line with command & control through CLI
-* Has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts that can then be executed (see [session recording](https://docs.k6.io/docs/session-recording-har-support))
-* Can be easily integrated into CI/CD processes
-* Provides a comprehensive set of built-in [metrics](https://docs.k6.io/docs/result-metrics)
-* Can stream metrics into [InfluxDB](https://www.influxdata.com/) for storage and visualization with [Grafana](https://grafana.com/) ([influxdb-grafana](https://docs.k6.io/docs/influxdb-grafana))
+* **Open Source** - well documented (see [docs](https://docs.k6.io/docs)) and with simple command line usage
+* **Synthetic Testing** - allows to easily create load test scenarios based on virtual users and simulated traffic configurations
+* **Small Footprint** - implemented in [Go](https://golang.org/), which has excellent support for concurrency and small memory footprint
+* **JavaScript DSL** - scenario scripting in `JavaScript` ES2015/ES6 with support for local and remote modules
+* **Testing as Code** - test logic and configuration options are both in JS for version control friendliness
+* **Command-line Driven** - can be run from the command line with command & control through CLI
+* **Compatible with [HAR](http://www.softwareishard.com/blog/har-12-spec/)** - has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts (see [session recording](https://docs.k6.io/docs/session-recording-har-support))
+* **Automated Testing** - can be easily integrated into CI/CD pipelines
+* **Comprehensive Metrics** - provides a comprehensive set of built-in [metrics](https://docs.k6.io/docs/result-metrics)
+* **Beautiful Visualizations** - can stream metrics into [InfluxDB](https://www.influxdata.com/) for storage and visualization with [Grafana](https://grafana.com/) (see [influxdb-grafana](https://docs.k6.io/docs/influxdb-grafana))
 
 Read more about k6's features and metrics:
 
-* https://docs.k6.io/docs/welcome#section-features
-* http://support.loadimpact.com/knowledgebase/articles/174121-how-do-i-interpret-test-results
+* [Features](https://docs.k6.io/docs/welcome#section-features)
+* [Interpret test results](http://support.loadimpact.com/knowledgebase/articles/174121-how-do-i-interpret-test-results)
 
 
 
@@ -44,9 +44,9 @@ Read more about k6's features and metrics:
 
 The [docker-compose](docker-compose.yml) file builds three Docker images:
 
-* InfluxDB
-* Grafana
-* k6
+* [InfluxDB](https://www.influxdata.com/)
+* [Grafana](https://grafana.com/)
+* [k6](https://github.com/loadimpact/k6)
 
 Run [docker-compose up](https://docs.docker.com/compose/reference/up/) to build the containers and run `InfluxDB` and `Grafana` in the background
 
@@ -74,7 +74,7 @@ Then select `myinfluxdb` from the `Select a InfluxDB data source` dropdown and c
 
 To establish a baseline, first we'll load test the website's home page with one concurrent user.
 
-This will allow us to see the best performing numbers, against which we'd compare more advanced scenarious involving more pages and more concurrent users.
+This will allow us to see the best performing numbers, against which we'd compare more advanced scenarios involving more pages and more concurrent users.
 
 (see [scenario_01](scenarios/scenario_01.js))
 
@@ -101,7 +101,7 @@ Run the test
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -148,7 +148,7 @@ Let's hit the home page with 50 concurrent users, each doing one iteration
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -186,7 +186,7 @@ Let's increase the number of iterations to hit the home page with approximately 
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 80 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -243,7 +243,7 @@ Run it with a single user
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 -i 1 /scenarios/scenario_all.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_all.js
@@ -301,7 +301,7 @@ Now run it with 50 concurrent users
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_all.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_all.js
@@ -366,16 +366,39 @@ From the load test stats and graphs above, we can conclude that the provisioned 
 
 Here are some optimization steps that we usually perform after running load tests:
 
-* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets (in may cases, this is one of the main reasons of poor website performance)
-* Scale Kubernetes cluster (horizontally by adding nodes or vertically by using different types of EC2 instances)
-* Scale Kubernetes pods (horizontally by increasing the replica count)
-* Scale pods Memory
-* Scale pods CPU
-* Scale Nginx Ingress pods (horizontally by increasing the replica count)
-* Scale Nginx Ingress CPU and Memory
-* Tune Nginx paramaters (e.g timeouts, queues)
+* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets (in many cases, this is one of the main reasons of poor website performance)
+* Scale Kubernetes cluster vertically by using different types of EC2 instances
+* Scale Kubernetes cluster horizontally by adding nodes
+* Scale Kubernetes pods horizontally by increasing the replica count
+* Scale Kubernetes pods vertically by increasing CPU and Memory limits
+* Scale Nginx Ingress pods horizontally by increasing the replica count
+* Scale Nginx Ingress vertically by increasing CPU and Memory limits
+* Tune Nginx parameters (e.g timeouts, queues)
 * Optimize application/web server parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
 * Optimize database queries and indexes
+
+
+### Database indexes creation rules and best practices
+
+The main rule is that with indexes, there are no absolute rules. Indexing is like a math problem. That said, rules help:
+
+* Consider the cost of maintaining indexes - pick the most important queries and set up indexes for those first
+
+* Retrieve less data (less bandwidth, less processing)
+
+* Avoid point queries and point index lookup within range queries (make the indexes covering) - random access is slow, sequential access is fast
+
+* Avoid sorting and grouping the result after query execution - indexes can help get rid of this
+
+* Compound indexes on composite primary keys in many-to-many tables will only work for range queries if an equality check on the first column in the index is included in the query.
+If the equality check on the first column in the index is not included in the query, the indexes are useless and only consume disk space and slow down writes.
+
+* When creating compound indexes, follow these rules for queries combining equality tests, sort fields, and range filters:
+    * Add fields in order from the highest selectivity to the lowest selectivity (if a field is not selective enough, do not add it to the index)
+    * Equality tests - add all equality-tested fields to the compound index, in any order
+    * Sort fields (ascending/descending only matters if there are multiple fields) - add sort fields to the index in the same order and direction as the query's sort
+    * Range filters - first, add the range filter for the field with the lowest selectivity (fewest distinct values in the collection), then the next lowest-selectivity range filter, and so on to the highest-selectivity
+    (this is counter-intuitive at first, but it allows the database to more effectively traverse different areas of B-Trees)
 
 
 ## Credits

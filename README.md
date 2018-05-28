@@ -378,7 +378,7 @@ Here are some optimization steps that we usually perform after running load test
 * Optimize database queries and indexes
 
 
-### Database indexes creation rules and best practices
+### Optimize database queries and indexes
 
 The main rule is that with indexes, there are no absolute rules. Indexing is like a math problem. That said, rules help:
 

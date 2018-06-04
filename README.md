@@ -366,16 +366,19 @@ From the load test stats and graphs above, we can conclude that the provisioned 
 
 Here are some optimization steps that we usually perform after running load tests:
 
-* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets (in many cases, this is one of the main reasons of poor website performance)
-* Scale Kubernetes cluster vertically by using different types of EC2 instances
-* Scale Kubernetes cluster horizontally by adding nodes
-* Scale Kubernetes pods horizontally by increasing the replica count
-* Scale Kubernetes pods vertically by increasing CPU and Memory limits
-* Scale Nginx Ingress pods horizontally by increasing the replica count
-* Scale Nginx Ingress vertically by increasing CPU and Memory limits
-* Tune Nginx parameters (e.g timeouts, queues)
-* Optimize application/web server parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
-* Optimize database queries and indexes
+* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets
+* [Scale Cluster Horizontally](https://docs.cloudposse.com/load-testing/scale-cluster-horizontally.md) - Scale Kubernetes cluster horizontally by adding nodes
+* [Scale Cluster Vertically](https://docs.cloudposse.com/load-testing/scale-cluster-vertically.md) - Scale Kubernetes cluster vertically by using different types of EC2 instances
+* [Scale Pods Horizontally](https://docs.cloudposse.com/load-testing/scale-pods-horizontally.md) - Scale Kubernetes pods horizontally by increasing the replica count
+* [Scale Pods Vertically](https://docs.cloudposse.com/load-testing/scale-pods-vertically.md) - Scale Kubernetes pods vertically by increasing CPU and Memory limits
+* [Scale Nginx Ingress Horizontally](https://docs.cloudposse.com/load-testing/scale-nginx-ingress-horizontally.md) - Scale Nginx Ingress pods horizontally by increasing the replica count
+* [Scale Nginx Ingress Vertically](https://docs.cloudposse.com/load-testing/scale-nginx-ingress-vertically.md) - Scale Nginx Ingress vertically by increasing CPU and Memory limits
+* [Tune Nginx](https://docs.cloudposse.com/load-testing/tune-nginx.md) - Tune Nginx parameters (timeouts, worker processes, logs, http)
+* Optimize application and web servers' parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
+* [Optimize databases](https://docs.cloudposse.com/load-testing/optimize-database-indexes.md) - Optimize database queries and indexes
+
+
+For more information, see [Cloud Posse Load Testing Docs](https://docs.cloudposse.com/load-testing/)
 
 
 ## Credits

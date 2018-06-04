@@ -378,7 +378,7 @@ Here are some optimization steps that we usually perform after running load test
 * [Optimize databases](https://docs.cloudposse.com/kubernetes-optimization/optimize-database-indexes) - Optimize database queries and indexes
 
 
-For more information, see [Cloud Posse Load Testing Docs](https://docs.cloudposse.com/load-testing/)
+For more details, have a look at our comprehensive [load testing documentation](https://docs.cloudposse.com/load-testing/) on our [Cloud Posse Developer Hub](https://docs.cloudposse.com).
 
 
 ## Credits

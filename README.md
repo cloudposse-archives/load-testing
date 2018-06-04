@@ -22,21 +22,21 @@ For load and performance testing, the workflow consists of these main steps:
 
 We use [k6](https://github.com/loadimpact/k6) from [Load Impact](https://loadimpact.com/) for the following reasons:
 
-* Open-source, well documented (see [docs](https://docs.k6.io/docs)) and with simple command line usage
-* Allows to easily create load test scenarios based on virtual users and simulated traffic configurations
-* It's implemented in [Go](https://golang.org/), which has exelent support for concurrency - tests will not consume too much CPU and memory on the test machine even with a large number of consurrent sessions
-* Scenario scripting in `JavaScript` ES2015/ES6 - with support for local and remote modules
-* Testing as code: test logic and configuration options are both in JS for version control friendliness
-* Can be run from the command line with command & control through CLI
-* Has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts that can then be executed (see [session recording](https://docs.k6.io/docs/session-recording-har-support))
-* Can be easily integrated into CI/CD processes
-* Provides a comprehensive set of built-in [metrics](https://docs.k6.io/docs/result-metrics)
-* Can stream metrics into [InfluxDB](https://www.influxdata.com/) for storage and visualization with [Grafana](https://grafana.com/) ([influxdb-grafana](https://docs.k6.io/docs/influxdb-grafana))
+* **Open Source** - well documented (see [docs](https://docs.k6.io/docs)) and with simple command line usage
+* **Synthetic Testing** - allows to easily create load test scenarios based on virtual users and simulated traffic configurations
+* **Small Footprint** - implemented in [Go](https://golang.org/), which has excellent support for concurrency and small memory footprint
+* **JavaScript DSL** - scenario scripting in `JavaScript` ES2015/ES6 with support for local and remote modules
+* **Testing as Code** - test logic and configuration options are both in JS for version control friendliness
+* **Command-line Driven** - can be run from the command line with command & control through CLI
+* **Compatible with [HAR](http://www.softwareishard.com/blog/har-12-spec/)** - has a built-in [HAR](http://www.softwareishard.com/blog/har-12-spec/) converter that will read HAR files and convert them to `k6` scripts (see [session recording](https://docs.k6.io/docs/session-recording-har-support))
+* **Automated Testing** - can be easily integrated into CI/CD pipelines
+* **Comprehensive Metrics** - provides a comprehensive set of built-in [metrics](https://docs.k6.io/docs/result-metrics)
+* **Beautiful Visualizations** - can stream metrics into [InfluxDB](https://www.influxdata.com/) for storage and visualization with [Grafana](https://grafana.com/) (see [influxdb-grafana](https://docs.k6.io/docs/influxdb-grafana))
 
 Read more about k6's features and metrics:
 
-* https://docs.k6.io/docs/welcome#section-features
-* http://support.loadimpact.com/knowledgebase/articles/174121-how-do-i-interpret-test-results
+* [Features](https://docs.k6.io/docs/welcome#section-features)
+* [Interpret test results](http://support.loadimpact.com/knowledgebase/articles/174121-how-do-i-interpret-test-results)
 
 
 
@@ -44,9 +44,9 @@ Read more about k6's features and metrics:
 
 The [docker-compose](docker-compose.yml) file builds three Docker images:
 
-* InfluxDB
-* Grafana
-* k6
+* [InfluxDB](https://www.influxdata.com/)
+* [Grafana](https://grafana.com/)
+* [k6](https://github.com/loadimpact/k6)
 
 Run [docker-compose up](https://docs.docker.com/compose/reference/up/) to build the containers and run `InfluxDB` and `Grafana` in the background
 
@@ -74,7 +74,7 @@ Then select `myinfluxdb` from the `Select a InfluxDB data source` dropdown and c
 
 To establish a baseline, first we'll load test the website's home page with one concurrent user.
 
-This will allow us to see the best performing numbers, against which we'd compare more advanced scenarious involving more pages and more concurrent users.
+This will allow us to see the best performing numbers, against which we'd compare more advanced scenarios involving more pages and more concurrent users.
 
 (see [scenario_01](scenarios/scenario_01.js))
 
@@ -101,7 +101,7 @@ Run the test
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -148,7 +148,7 @@ Let's hit the home page with 50 concurrent users, each doing one iteration
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -186,7 +186,7 @@ Let's increase the number of iterations to hit the home page with approximately 
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 80 /scenarios/scenario_01.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_01.js
@@ -243,7 +243,7 @@ Run it with a single user
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 1 -i 1 /scenarios/scenario_all.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_all.js
@@ -301,7 +301,7 @@ Now run it with 50 concurrent users
 docker-compose run -v $PWD/scenarios:/scenarios k6 run --vus 50 -i 50 /scenarios/scenario_all.js
 ```
 
-```
+```sh
 execution: local
      output: influxdb=http://influxdb:8086/k6 (http://influxdb:8086)
      script: /scenarios/scenario_all.js
@@ -366,16 +366,19 @@ From the load test stats and graphs above, we can conclude that the provisioned 
 
 Here are some optimization steps that we usually perform after running load tests:
 
-* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets (in may cases, this is one of the main reasons of poor website performance)
-* Scale Kubernetes cluster (horizontally by adding nodes or vertically by using different types of EC2 instances)
-* Scale Kubernetes pods (horizontally by increasing the replica count)
-* Scale pods Memory
-* Scale pods CPU
-* Scale Nginx Ingress pods (horizontally by increasing the replica count)
-* Scale Nginx Ingress CPU and Memory
-* Tune Nginx paramaters (e.g timeouts, queues)
-* Optimize application/web server parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
-* Optimize database queries and indexes
+* Put all static assets behind a CDN (e.g. AWS CloudFront), do not overload the Kubernetes pods with serving the static assets
+* [Scale Cluster Horizontally](https://docs.cloudposse.com/kubernetes-optimization/scale-cluster-horizontally) - Scale Kubernetes cluster horizontally by adding nodes
+* [Scale Cluster Vertically](https://docs.cloudposse.com/kubernetes-optimization/scale-cluster-vertically) - Scale Kubernetes cluster vertically by using different types of EC2 instances
+* [Scale Pods Horizontally](https://docs.cloudposse.com/kubernetes-optimization/scale-pods-horizontally) - Scale Kubernetes pods horizontally by increasing the replica count
+* [Scale Pods Vertically](https://docs.cloudposse.com/kubernetes-optimization/scale-pods-vertically) - Scale Kubernetes pods vertically by increasing CPU and Memory limits
+* [Scale Nginx Ingress Horizontally](https://docs.cloudposse.com/kubernetes-optimization/scale-nginx-ingress-horizontally) - Scale Nginx Ingress pods horizontally by increasing the replica count
+* [Scale Nginx Ingress Vertically](https://docs.cloudposse.com/kubernetes-optimization/scale-nginx-ingress-vertically) - Scale Nginx Ingress vertically by increasing CPU and Memory limits
+* [Tune Nginx](https://docs.cloudposse.com/kubernetes-optimization/tune-nginx) - Tune Nginx parameters (timeouts, worker processes, logs, http)
+* Optimize application and web servers' parameters (e.g. concurrency, threads and processes, thread pools, timeouts, memory limits)
+* [Optimize databases](https://docs.cloudposse.com/kubernetes-optimization/optimize-database-indexes) - Optimize database queries and indexes
+
+
+For more details, have a look at our comprehensive [load testing documentation](https://docs.cloudposse.com/load-testing/) on our [Cloud Posse Developer Hub](https://docs.cloudposse.com).
 
 
 ## Credits
